@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteCond %{HTTP_HOST} ^(.+)\.example\.com$
+RewriteRule ^ http://example\.com/index\.php?team=%1 [L,R=301]

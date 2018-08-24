@@ -1,0 +1,9 @@
+btn-outline-info:focus {
+	color: #fff;
+  background-color: #574278;
+  border-color: #523e71;
+}
+
+.areacoments {
+	height: auto !important;
+}
