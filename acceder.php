@@ -48,7 +48,7 @@ function RegistrarSolicitud () {
 <?php RegistrarSolicitud(); ?>
 <div class="container">
 <div class="row">
-<a href="login.php"><h2><img src="ico/android-chrome-192x192.png" width="76px" /></a> Solicitar acceso</h2>
+<a href="login.php?team=<?php echo $_SESSION['teamnick']; ?>"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Solicitar acceso a <?php echo $_SESSION['teamname']; ?></h2>
 	<form enctype="multipart/form-data" id="FormSolicitarAccesi" name="SolicitarAcceso" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<div class="form-group">
 			<label for="Nombre">Nombre</label>
@@ -58,13 +58,7 @@ function RegistrarSolicitud () {
 			<label for="DNI">DNI</label>
 			<input type="tel" maxlength = "8" class="form-control" name="DNI">
 		</div>
-		<div class="form-group">
-			<label for="Equipo">Equipo</label>
-				<select class="form-control" name="equipo">
-					<option value="1">Masculino</option>
-					<option value="2">Femenino</option>
-				</select>
-		</div>
+		<input type="hidden" name="equipo" value="<?php echo $_SESSION['teamid']; ?>">
 	  <button type="submit" class="btn btn-default" name="EnviarSolicitud">Enviar solicitud</button>
 	</form>
 </div>

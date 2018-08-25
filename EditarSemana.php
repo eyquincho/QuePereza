@@ -21,6 +21,8 @@ if (isset ($_POST["EdicionSemana"])) {
 	$Edit_ses_2 = $_POST["dia2"];
 	$Edit_ses_3 = $_POST["dia3"];
 	$Edit_ses_4 = $_POST["dia4"];
+	$Edit_ses_5 = $_POST["dia5"];
+	$Edit_ses_6 = $_POST["dia6"];
 	$Edit_oponente = $_POST["oponente"];
 	$Edit_ciudad = $_POST["ciudad"];
 	$Edit_fechayhora = $_POST["fechayhora"];
@@ -29,7 +31,7 @@ if (isset ($_POST["EdicionSemana"])) {
 	$Edit_fechayhora_b = $_POST["fechayhora_b"];
 	$Edit_comentarios = $_POST["comentarios"];
 	$Edit_grupo = $_POST["grupo"];
-	$guardar_actualizacion= "UPDATE as_semana SET `ses_1`='$Edit_ses_1',`ses_2`='$Edit_ses_2',`ses_3`='$Edit_ses_3',`ses_4`='$Edit_ses_4',`oponente`='$Edit_oponente',`ciudad`='$Edit_ciudad',`fecha_hora`='$Edit_fechayhora',`oponente_b`='$Edit_oponente_b',`ciudad_b`='$Edit_ciudad_B',`fecha_hora_B`='$Edit_fechayhora_b',`comentarios`='$Edit_comentarios',`grupo`='$Edit_grupo' WHERE `id`= '$Edit_IDSemana'";
+	$guardar_actualizacion= "UPDATE as_semana SET `ses_1`='$Edit_ses_1',`ses_2`='$Edit_ses_2',`ses_3`='$Edit_ses_3',`ses_4`='$Edit_ses_4',`ses_5`='$Edit_ses_5',`ses_6`='$Edit_ses_6',`oponente`='$Edit_oponente',`ciudad`='$Edit_ciudad',`fecha_hora`='$Edit_fechayhora',`oponente_b`='$Edit_oponente_b',`ciudad_b`='$Edit_ciudad_B',`fecha_hora_B`='$Edit_fechayhora_b',`comentarios`='$Edit_comentarios',`grupo`='$Edit_grupo' WHERE `id`= '$Edit_IDSemana'";
 					if (mysqli_query($_SESSION['con'], $guardar_actualizacion)or die(mysqli_error($_SESSION['con']))) {
 									echo "<div class=\"alert alert-success\" role=\"alert\">Has editado la semana correctamente</div>";
 								}else {
@@ -56,7 +58,7 @@ else {}
 <body>
 <div class="container">
 <div class="row">
-<a href="main.php"><h2><img src="ico/android-chrome-192x192.png" width="76px" /></a> Editar semana</h2>
+<a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Editar semana</h2>
 	<?php 
 	EditarSemana();
 	?>
@@ -75,16 +77,22 @@ else {}
 		<label for="ActivosSemana">Días activos </label><br>
 			<div class="btn-group" data-toggle="buttons">
 			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_1==1) { ?> active<?php }else {} ?>">
-				<input href="#"  name="dia1" type="checkbox" value="1" <?php if ($semana_actual->ses_1==1) { ?> checked<?php }else {} ?>> Martes
+				<input name="dia1" type="checkbox" value="1" <?php if ($semana_actual->ses_1==1) { ?> checked<?php }else {} ?>> Lunes
 			  </button>
 			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_2==1) { ?> active<?php }else {} ?>">
-				<input name="dia2" type="checkbox" value="1" <?php if ($semana_actual->ses_2==1) { ?> checked<?php }else {} ?>> Miércoles
+				<input name="dia2" type="checkbox" value="1" <?php if ($semana_actual->ses_2==1) { ?> checked<?php }else {} ?>> Martes
 			  </button>
 			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_3==1) { ?> active<?php }else {} ?>">
-				<input name="dia3" type="checkbox" value="1" <?php if ($semana_actual->ses_3==1) { ?> checked<?php }else {} ?>> Viernes
+				<input name="dia3" type="checkbox" value="1" <?php if ($semana_actual->ses_3==1) { ?> checked<?php }else {} ?>> Miércoles
 			  </button>
 			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_4==1) { ?> active<?php }else {} ?>">
-				<input name="dia4" type="checkbox" value="1" <?php if ($semana_actual->ses_4==1) { ?> checked<?php }else {} ?>> Partido
+				<input name="dia4" type="checkbox" value="1" <?php if ($semana_actual->ses_4==1) { ?> checked<?php }else {} ?>> Jueves
+			  </button>
+			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_5==1) { ?> active<?php }else {} ?>">
+				<input name="dia5" type="checkbox" value="1" <?php if ($semana_actual->ses_5==1) { ?> checked<?php }else {} ?>> Viernes
+			  </button>
+			  <button class="btn btn-outline-info <?php if ($semana_actual->ses_6==1) { ?> active<?php }else {} ?>">
+				<input name="dia6" type="checkbox" value="1" <?php if ($semana_actual->ses_6==1) { ?> checked<?php }else {} ?>> Partido
 			  </button>
 			</div>
 			<div class="card card-block">
@@ -154,16 +162,22 @@ else {}
 				<label for="ActivosSemana">Días activos </label><br>
 					<div class="btn-group" data-toggle="buttons">
 					  <label class="btn btn-outline-info" data-active-class="info" >
-						<input name="dia1" type="checkbox" value="1"> Martes
+						<input name="dia1" type="checkbox" value="1"> Lunes
 					  </label>
 					  <label class="btn btn-outline-info">
-						<input name="dia2" type="checkbox" value="1"> Miércoles
+						<input name="dia2" type="checkbox" value="1"> Martes
 					  </label>
 					  <label class="btn btn-outline-info">
-						<input name="dia3" type="checkbox" value="1"> Viernes
+						<input name="dia3" type="checkbox" value="1"> Miércoles
+					  </label>
+					  <label class="btn btn-outline-info">
+						<input name="dia4" type="checkbox" value="1"> Jueves
+					  </label>
+					  <label class="btn btn-outline-info">
+						<input name="dia5" type="checkbox" value="1"> Viernes
 					  </label>
 					  <label class="btn btn-outline-info"  data-toggle="collapse" data-target="#datosPartido" aria-expanded="false" aria-controls="datosPartido">
-						<input name="dia4" type="checkbox" value="1"> Partido
+						<input name="dia6" type="checkbox" value="1"> Partido
 					  </label>
 					</div>
 					<div class="collapse" id="datosPartido">

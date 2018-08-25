@@ -6,12 +6,13 @@
 	conexionDB();
 	//Evitamos que entre algo raro por la variable, y la guardamos en sesión
 	$team= mysqli_real_escape_string($_SESSION['con'], $_GET['team']);
-    $_SESSION['team']=$team;
-	
 	$tabla_equipo = "as_equipos";
 	$sql="SELECT * FROM $tabla_equipo WHERE nick='$team'";
 	$result=mysqli_query($_SESSION['con'], $sql);
 	$equipo = mysqli_fetch_object($result);
+	$_SESSION['teamnick']=$team;
+	$_SESSION['teamid']=$equipo->ID;
+	$_SESSION['teamname']=$equipo->nombre;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,8 +31,8 @@
 		<div class="col-lg-12">
 			<center><!-- Logo grandote -->
 			</br>
-			<img src="ico/android-chrome-192x192.png" />
-			<h2>Asistencia - <?php echo $equipo->nombre; ?> id <?php echo $equipo->ID; ?></h2>
+			<img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="150px";/>
+			<h2>Asistencia | <?php echo $_SESSION['teamname']; ?></h2>
 			<?php
 				if (isset($_GET['e'])) {
 				echo "<div class=\"alert alert-warning\" role=\"alert\">Ha ocurrido un error, puede que el DNI esté vacío o incorrecto, o que tu cuenta no exista. Inténtalo de nuevo.</div>";
@@ -50,8 +51,8 @@
 					<div class="form-group">
 						<input type="tel" class="form-control" maxlength = "8" id="dni" name="dni" placeholder="Introduce tu DNI (sin letra)">
 					</div>
-					<input type="hidden" name="equipo" value="<?php echo $equipo->ID; ?>">
-					<button type="submit" class="btn btn-success">Entrar</button><a class="btn btn-outline-info" href="acceder.php"><i class="fa fa-sign-in"></i> Solicitar acceso</a>
+					<input type="hidden" name="equipo" value="<?php echo $_SESSION['teamid']; ?>">
+					<button type="submit" class="btn btn-success">Entrar</button><a class="btn btn-outline-info" href="acceder.php?equipo=<?php echo $_SESSION['teamid']; ?>"><i class="fa fa-sign-in"></i> Solicitar acceso</a>
 				</form>
 			</center>
 		</div>

@@ -34,26 +34,14 @@ while ($i<=4){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-	<!-- favicons para todos -->
-	<?php include ("favicon.html"); ?>
-	<link rel="icon" href="favicon.ico">
-	<link href="ico/apple-touch-icon.png" rel="apple-touch-icon" />
-	<link href="ico/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-	<link href="ico/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-	<link href="ico/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-	<link href="ico/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
-	<link href="ico/icon-hires.png" rel="icon" sizes="192x192" />
-	<link href="ico/icon-normal.png" rel="icon" sizes="128x128" />
-	
-	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">	
 	<title>Asistencia</title>
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<h2><a href="main.php"><img src="ico/android-chrome-192x192.png" width="76px" /></a> Asistencia</h2>
+			<h2><a href="main.php"><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Asistencia</h2>
 			<?php
 				if (isset($_POST['envasist'])){
 
@@ -63,10 +51,10 @@ while ($i<=4){
 						$reincidente = mysqli_num_rows($result);
 						switch ($reincidente) {
 							case 0:
-								$save_day= "INSERT INTO as_asistencia (usuario_nombre, usuario_equipo, usuario_id, asist_1, asist_2, asist_3, asist_4, comentarios, semana) VALUES ('".$nombre."','".$equipo."','".$sessionid."','".$dia1."', '".$dia2."', '".$dia3."', '".$dia4."', '".$comentario."', '".$semana."')";
+								$save_day= "INSERT INTO as_asistencia (usuario_nombre, usuario_equipo, usuario_id, asist_1, asist_2, asist_3, asist_4, asist_5, asist_6, comentarios, semana) VALUES ('".$nombre."','".$equipo."','".$sessionid."','".$dia1."', '".$dia2."', '".$dia3."', '".$dia4."','".$dia5."','".$dia6."', '".$comentario."', '".$semana."')";
 								break;
 							case 1:
-								$save_day= "UPDATE as_asistencia SET `usuario_nombre`= '$nombre', `usuario_equipo`= '$equipo', `usuario_id`='$sessionid', `asist_1`='$dia1', `asist_2`='$dia2', `asist_3`='$dia3', `asist_4`='$dia4', `comentarios`= '$comentario', `semana`='$semana' WHERE usuario_nombre='$nombre' AND semana='$semana'";
+								$save_day= "UPDATE as_asistencia SET `usuario_nombre`= '$nombre', `usuario_equipo`= '$equipo', `usuario_id`='$sessionid', `asist_1`='$dia1', `asist_2`='$dia2', `asist_3`='$dia3', `asist_4`='$dia4',`asist_5`='$dia5',`asist_6`='$dia6', `comentarios`= '$comentario', `semana`='$semana' WHERE usuario_nombre='$nombre' AND semana='$semana'";
 						}
 					
 					if (mysqli_query($_SESSION['con'], $save_day)or die(mysqli_error($_SESSION['con']))) {

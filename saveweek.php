@@ -8,6 +8,8 @@ $ses_1=$_POST['dia1'];
 $ses_2=$_POST['dia2'];
 $ses_3=$_POST['dia3'];
 $ses_4=$_POST['dia4'];
+$ses_4=$_POST['dia5'];
+$ses_4=$_POST['dia6'];
 $oponente= mysqli_real_escape_string($_SESSION['con'], $_POST['rival']);
 $ciudad= mysqli_real_escape_string($_SESSION['con'], $_POST['ciudad']);
 $fechayhora= $_POST['fechayhora'];
@@ -25,16 +27,6 @@ $equipo= $_SESSION["equipo"];
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-	<!-- favicons para todos -->
-	<?php include ("favicon.html"); ?>
-	<link rel="icon" href="favicon.ico">
-	<link href="ico/apple-touch-icon.png" rel="apple-touch-icon" />
-	<link href="ico/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-	<link href="ico/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-	<link href="ico/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
-	<link href="ico/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
-	<link href="ico/icon-hires.png" rel="icon" sizes="192x192" />
-	<link href="ico/icon-normal.png" rel="icon" sizes="128x128" />
 	<title>Asistencia</title>
 </head>
 <body>
@@ -42,10 +34,10 @@ $equipo= $_SESSION["equipo"];
 	<div class="row">
 		<div class="col-lg-12">
 			<!-- Logo grandote -->
-			<h2><a href="main.php"><img src="ico/android-chrome-192x192.png" width="76px" /></a> Asistencia</h2>
+			<h2><a href="main.php"><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Asistencia</h2>
 			<?php
 				if (isset($_POST['enviaNewWeek'])){
-					$save_day= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, oponente, ciudad, fecha_hora, oponente_b, ciudad_b, fecha_hora_B, comentarios, grupo) VALUES ('".$equipo."','".$ses_1."','".$ses_2."', '".$ses_3."', '".$ses_4."', '".$oponente."', '".$ciudad."', '".$fechayhora."', '".$oponente_b."', '".$ciudad_b."', '".$fechayhora_b."','".$comentarios."','".$grupo."')";
+					$save_day= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, ses_5, ses_6, oponente, ciudad, fecha_hora, oponente_b, ciudad_b, fecha_hora_B, comentarios, grupo) VALUES ('".$equipo."','".$ses_1."','".$ses_2."', '".$ses_3."', '".$ses_4."','".$ses_5."','".$ses_6."', '".$oponente."', '".$ciudad."', '".$fechayhora."', '".$oponente_b."', '".$ciudad_b."', '".$fechayhora_b."','".$comentarios."','".$grupo."')";
 					if (mysqli_query($_SESSION['con'], $save_day)or die(mysqli_error($_SESSION['con']))) {
 									echo "<div class=\"alert alert-success\" role=\"alert\">Nueva semana añadida correctamente</div>";
 								}else {

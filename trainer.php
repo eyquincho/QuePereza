@@ -84,7 +84,7 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 <body>
 <div class="container">
 <div class="row">
-<a href="main.php"><h2><img src="ico/android-chrome-192x192.png" width="76px" /></a> Entrenador</h2>
+<a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Entrenador</h2>
 	<!-- Botones -->
 	<?php RevSolicitudes(); ?>
 	<a href="EditarSemana.php" class="btn btn-success btn-block" role="button" aria-pressed="true">Editar semana</a>
@@ -147,8 +147,11 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 			</tr>
 		</thead>
 		<tbody>
+		<?php 
+			if (empty($_SESSION['ses_1'])){
+		?>
 			<tr>
-				<th scope="row">Martes</th>
+				<th scope="row">Lunes</th>
 				<td>
 					<?php 
 						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 2 AND `semana` = ".$semana->id));
@@ -165,8 +168,12 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 					?>
 				</td>
 			</tr>
+		<?php
+			}else{}
+			if (empty($_SESSION['ses_2'])){
+		?>
 			<tr>
-				<th scope="row">Miércoles</th>
+				<th scope="row">Martes</th>
 				<td>
 					<?php 
 						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_2` = 2 AND `semana` = ".$semana->id));
@@ -183,8 +190,12 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 					?>
 				</td>
 			</tr>
+		<?php
+			}else{}
+			if (empty($_SESSION['ses_3'])){
+		?>
 			<tr>
-				<th scope="row">Viernes</th>
+				<th scope="row">Miércoles</th>
 				<td>
 					<?php 
 						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_3` = 2 AND `semana` = ".$semana->id));
@@ -201,8 +212,12 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 					?>
 				</td>
 			</tr>
+		<?php
+			}else{}
+			if (empty($_SESSION['ses_4'])){
+		?>
 			<tr>
-				<th scope="row">Partido</th>
+				<th scope="row">Jueves</th>
 				<td>
 					<?php 
 						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_4` = 2 AND `semana` = ".$semana->id));
@@ -219,6 +234,51 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 					?>
 				</td>
 			</tr>
+		<?php
+			}else{}
+			if (empty($_SESSION['ses_5'])){
+		?>
+			<tr>
+				<th scope="row">Viernes</th>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 2 AND `semana` = ".$semana->id));
+					?>
+				</td>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 1 AND `semana` = ".$semana->id));
+					?>
+				</td>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 0 AND `semana` = ".$semana->id));
+					?>
+				</td>
+			</tr>
+		<?php
+			}else{}
+			if (empty($_SESSION['ses_6'])){
+		?>
+			<tr>
+				<th scope="row">Partido</th>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 2 AND `semana` = ".$semana->id));
+					?>
+				</td>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 1 AND `semana` = ".$semana->id));
+					?>
+				</td>
+				<td>
+					<?php 
+						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 0 AND `semana` = ".$semana->id));
+					?>
+				</td>
+			</tr>
+			<?php }else{} ?>
 		</tbody>
 </table>
 	</div>

@@ -97,7 +97,7 @@ else {}
 <body>
 <div class="container">
 <div class="row">
-<a href="main.php"><h2><img src="ico/android-chrome-192x192.png" width="76px" /></a> Editar jugadores</h2>
+<a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Editar jugadores</h2>
 	<?php 
 	EdicionDeUsuario();
 	SumarUsuario ();
