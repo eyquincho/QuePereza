@@ -101,7 +101,7 @@ switch ($semana->ses_5) {
 	}
 switch ($semana->ses_6) {
 		case 0:
-			$ses_6="disabled";
+			$ses_6="hidden";
 			break;
 		case 1:
 			$ses_6="";
@@ -216,52 +216,52 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
     <h4 class="card-title" <?php echo $ses_2; ?>>Martes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_2; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 2, 2) ?>">
-				<input name="dia1" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 2, 2) ?>> Si
+				<input name="dia2" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 2, 2) ?>> Si
 			  </button>
 			  <button class="btn btn-outline-warning <?php disponibilidad_actual("active", 2, 1) ?>">
-				<input name="dia1" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 2, 1) ?>> Duda
+				<input name="dia2" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 2, 1) ?>> Duda
 			  </button>
 			  <button class="btn btn-outline-danger <?php disponibilidad_actual("active", 2, 0) ?>">
-				<input name="dia1" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 2, 0) ?>> No
+				<input name="dia2" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 2, 0) ?>> No
 			  </button>
 		</div>
 	<h4 class="card-title" <?php echo $ses_3; ?>>Miércoles</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_3; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 3, 2) ?>">
-				<input name="dia2" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 3, 2) ?>> Si
+				<input name="dia3" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 3, 2) ?>> Si
 			  </button>
 			  <button class="btn btn-outline-warning <?php disponibilidad_actual("active", 3, 1) ?>">
-				<input name="dia2" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 3, 1) ?>> Duda
+				<input name="dia3" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 3, 1) ?>> Duda
 			  </button>
 			  <button class="btn btn-outline-danger <?php disponibilidad_actual("active", 3, 0) ?>">
-				<input name="dia2" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 3, 0) ?>> No
+				<input name="dia3" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 3, 0) ?>> No
 			  </button>
 		</div>
 	<h4 class="card-title" <?php echo $ses_4; ?>>Jueves</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_4; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 4, 2) ?>">
-				<input name="dia3" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 4, 2) ?>> Si
+				<input name="dia4" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 4, 2) ?>> Si
 			  </button>
 			  <button class="btn btn-outline-warning <?php disponibilidad_actual("active", 4, 1) ?>">
-				<input name="dia3" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 4, 1) ?>> Duda
+				<input name="dia4" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 4, 1) ?>> Duda
 			  </button>
 			  <button class="btn btn-outline-danger <?php disponibilidad_actual("active", 4, 0) ?>">
-				<input name="dia3" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 4, 0) ?>> No
+				<input name="dia4" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 4, 0) ?>> No
 			  </button>
 		</div>
 	<h4 class="card-title" <?php echo $ses_5; ?>>Viernes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_5; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 5, 2) ?>">
-				<input name="dia3" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 5, 2) ?>> Si
+				<input name="dia5" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 5, 2) ?>> Si
 			  </button>
 			  <button class="btn btn-outline-warning <?php disponibilidad_actual("active", 5, 1) ?>">
-				<input name="dia3" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 5, 1) ?>> Duda
+				<input name="dia5" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 5, 1) ?>> Duda
 			  </button>
 			  <button class="btn btn-outline-danger <?php disponibilidad_actual("active", 5, 0) ?>">
-				<input name="dia3" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 5, 0) ?>> No
+				<input name="dia5" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 5, 0) ?>> No
 			  </button>
 		</div>
-	<h4 class="card-title"><a data-toggle="collapse" href="#infopartido" aria-expanded="false">Partido</h4></a>
+	<h4 class="card-title" <?php echo $ses_6; ?>><a data-toggle="collapse" href="#infopartido" aria-expanded="false">Partido</h4></a>
 	<!-- Mostrar partidos de la semana actual -->
 	<div class="collapse" id="infopartido">
 	<p class="card-text">
@@ -279,15 +279,15 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	<?php } else{} ?>
 	</div>
 	<!-- Fin mostrar partidos -->
-		<div class="btn-group-lg" data-toggle="buttons">
+		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_6; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 6, 2) ?>" <?php echo $ses_6; ?>>
-				<input name="dia4" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 6, 2) ?>> Si
+				<input name="dia6" id="si" autocomplete="off" value="2" type="radio" <?php disponibilidad_actual("checked", 6, 2) ?>> Si
 			  </button>
 			  <button class="btn btn-outline-warning <?php disponibilidad_actual("active", 6, 1) ?>" <?php echo $ses_6; ?>>
-				<input name="dia4" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 6, 1) ?>> Duda
+				<input name="dia6" id="duda" autocomplete="off" value="1" type="radio" <?php disponibilidad_actual("checked", 6, 1) ?>> Duda
 			  </button>
 			  <button class="btn btn-outline-danger <?php disponibilidad_actual("active", 6, 0) ?>" <?php echo $ses_6; ?>>
-				<input name="dia4" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 6, 0) ?>> No
+				<input name="dia6" id="no" autocomplete="off" value="0" type="radio" <?php disponibilidad_actual("checked", 6, 0) ?>> No
 			  </button>
 		</div>
 	<br>

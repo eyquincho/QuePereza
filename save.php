@@ -10,7 +10,7 @@ $comentario=$_POST['comentario'];
 $semana=$_POST['semana'];
 $equipo=$_SESSION['equipo'];
 $i=1;
-while ($i<=4){
+while ($i<=6){
 	$s = "dia$i";
 	if (isset ($_POST[$s])) {
 	$$s = $_POST[$s]; } 
