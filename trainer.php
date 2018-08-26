@@ -5,6 +5,8 @@ ob_start();
 include("php/conDB.php");
 conexionDB();
 
+$idequipo=$_SESSION['teamid'];
+
 function RevSolicitudes (){
 if (isset($_POST['aceptar_usuario'])) {
     //Añadir jugador
@@ -45,11 +47,11 @@ $tabla_semana = "as_semana";
 $tabla_asistencia = "as_asistencia";
 
 //Seleccionamos la última semana añadida, y la asignamos a la variable semana
-$sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_semana)";
+$sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_semana) & equipo=$idequipo";
 $result_semana=mysqli_query($_SESSION['con'], $sql_semana);
 $semana = mysqli_fetch_object($result_semana);
 
-$lista_solicitudes = mysqli_query($_SESSION['con'], "SELECT * FROM `as_solicitudes`");
+$lista_solicitudes = mysqli_query($_SESSION['con'], "SELECT * FROM `as_solicitudes` WHERE solicitud_equipo=$idequipo");
 $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
@@ -117,7 +119,6 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 					  <div class="modal-body">
 						<p>Nombre: <?php echo $solicitud->solicitud_nombre; ?></p>
 						<p>DNI: <?php echo $solicitud->solicitud_dni; ?></p>
-						<p>Equipo: <?php echo $solicitud->solicitud_equipo; ?></p>
 					  </div>
 					  
 					  <div class="modal-footer">
@@ -135,153 +136,7 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 				?>
 		</div>
 	</div>
-	<div class="col-lg-6">
-	<strong>Resumen asistencia semana actual: </strong>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>SI</th>
-				<th>DUDA</th>
-				<th>NO</th>
-			</tr>
-		</thead>
-		<tbody>
-		<?php 
-			if (empty($_SESSION['ses_1'])){
-		?>
-			<tr>
-				<th scope="row">Lunes</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-		<?php
-			}else{}
-			if (empty($_SESSION['ses_2'])){
-		?>
-			<tr>
-				<th scope="row">Martes</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_2` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_2` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_2` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-		<?php
-			}else{}
-			if (empty($_SESSION['ses_3'])){
-		?>
-			<tr>
-				<th scope="row">Miércoles</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_3` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_3` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_3` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-		<?php
-			}else{}
-			if (empty($_SESSION['ses_4'])){
-		?>
-			<tr>
-				<th scope="row">Jueves</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_4` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_4` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_4` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-		<?php
-			}else{}
-			if (empty($_SESSION['ses_5'])){
-		?>
-			<tr>
-				<th scope="row">Viernes</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_5` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-		<?php
-			}else{}
-			if (empty($_SESSION['ses_6'])){
-		?>
-			<tr>
-				<th scope="row">Partido</th>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 2 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 1 AND `semana` = ".$semana->id));
-					?>
-				</td>
-				<td>
-					<?php 
-						echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_6` = 0 AND `semana` = ".$semana->id));
-					?>
-				</td>
-			</tr>
-			<?php }else{} ?>
-		</tbody>
-</table>
-	</div>
+
 </div>
 <hr>
 <a class="btn btn-danger" href="php/cerrar.php">
