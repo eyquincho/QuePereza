@@ -10,9 +10,19 @@
 	$sql="SELECT * FROM $tabla_equipo WHERE nick='$team'";
 	$result=mysqli_query($_SESSION['con'], $sql);
 	$equipo = mysqli_fetch_object($result);
-	$_SESSION['teamnick']=$team;
-	$_SESSION['teamid']=$equipo->ID;
-	$_SESSION['teamname']=$equipo->nombre;
+	// Contamos cuantas lineas salen en el resultado, si es 1, es que existe
+	$existe=mysqli_num_rows($result);
+	if($existe==0){
+		//Si no existe, mostrar mensaje y botón de volver
+		header("location:index.php");
+	}
+	else {
+		$_SESSION['teamnick']=$team;
+		$_SESSION['teamid']=$equipo->ID;
+		$_SESSION['teamname']=$equipo->nombre;
+		}
+	
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
