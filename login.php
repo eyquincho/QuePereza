@@ -14,7 +14,7 @@
 	$existe=mysqli_num_rows($result);
 	if($existe==0){
 		//Si no existe, mostrar mensaje y botón de volver
-		header("location:index.php");
+		header('location:index.php?fail='. $team .'');
 	}
 	else {
 		$_SESSION['teamnick']=$team;
