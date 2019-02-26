@@ -7,3 +7,4 @@ Sistema de gestión de entrenamientos para equipos deportivos, permite el regist
 Errores conocidos
 ---
 - Al entrar por primera vez en un equipo nuevo no se puede crear la primera semana.
+- Puede reducirse la cantidad de código, hay que revisar todo
