@@ -62,6 +62,17 @@ $sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_se
 $result_semana=mysqli_query($_SESSION['con'], $sql_semana);
 $semana = mysqli_fetch_object($result_semana);
 
+//Si el equipo nunca ha tenido una semana, hay que forzar la creación de la primera
+if (mysqli_num_rows($result_semana)==0){
+	if ($_SESSION["rango"]=="1"){
+		echo "Parece que todavía no has creado tu primera semana. Accede al panel de creación de semanas haciendo clic aqui:";
+			?><a class="btn btn-outline-info btn-lg btn-block" href="EditarSemana.php"><i class="fa fa-cog fa-lg"></i>Crear una nueva semana</a><?php
+		}
+		else{
+			echo "Parece que todavía no se ha creado la primera semana, accede de nuevo más tarde o contacta con tu entrenador";
+		}	
+	}else{}
+
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
 //Asi podemos deshabilitar o no los botones a la hora de seleccionar
 
