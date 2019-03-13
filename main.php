@@ -63,16 +63,17 @@ $result_semana=mysqli_query($_SESSION['con'], $sql_semana);
 $semana = mysqli_fetch_object($result_semana);
 
 //Si el equipo nunca ha tenido una semana, hay que forzar la creación de la primera
+function comprobar_existencia() {
 if (mysqli_num_rows($result_semana)==0){
-	if ($_SESSION["rango"]=="1"){
-		echo "Parece que todavía no has creado tu primera semana. Accede al panel de creación de semanas haciendo clic aqui:";
-			?><a class="btn btn-outline-info btn-lg btn-block" href="EditarSemana.php"><i class="fa fa-cog fa-lg"></i>Crear una nueva semana</a><?php
-		}
-		else{
-			echo "Parece que todavía no se ha creado la primera semana, accede de nuevo más tarde o contacta con tu entrenador";
-		}	
-	}else{}
-
+    if ($_SESSION["rango"]=="1"){
+        echo "Parece que todavía no has creado tu primera semana. Accede al panel de creación de semanas haciendo clic aqui:";
+            ?><a class="btn btn-outline-info btn-lg btn-block" href="EditarSemana.php">Crear una nueva semana</a><?php
+        }
+        else{
+            echo "Parece que todavía no se ha creado la primera semana, accede de nuevo más tarde o contacta con tu entrenador";
+        }    
+    }else{}
+}
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
 //Asi podemos deshabilitar o no los botones a la hora de seleccionar
 
@@ -215,6 +216,10 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
     Asistencia semana de <strong><?php echo $_SESSION["nombre"]; ?></strong>
   </div>
   <form enctype="multipart/form-data" id="envio" name="envio_asistencia" class="col-lg-12" action="save.php" method="post">
+  <?php 
+	//Ponemos @ para evitar que devuelva el warning
+  	@comprobar_existencia();
+  ?> 
   <div class="card-block">
 	<h4 class="card-title" <?php echo $ses_1; ?>>Lunes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_1; ?>>
