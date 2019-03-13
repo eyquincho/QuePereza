@@ -47,6 +47,7 @@ if (!isset($_SESSION["rango"])) {
 	}
 }else {}
 
+// Funcion para listar los miembros de cada grupo de trabajo, recibe como variable el número del grupo
 function lista_grupo($gr) {
 	$equipo=$_SESSION["equipo"];
 	$sql_jugadores_grupo="SELECT * FROM as_usuarios WHERE `usuario_equipo`='$equipo' AND `usuario_grupo`='$gr' ORDER BY `usuario_nombre`";
@@ -106,7 +107,7 @@ switch ($semana->ses_6) {
 		case 1:
 			$ses_6="";
 	}
-
+// Establecemos la existencia o no de cada día como variables de sesión
 $_SESSION["ses_1"]=$ses_1;
 $_SESSION["ses_2"]=$ses_2;
 $_SESSION["ses_3"]=$ses_3;
@@ -133,7 +134,8 @@ function disponibilidad_actual ($texto,$dia,$opcion){
 		echo $texto;
 	}else {}	
 };
-	
+
+// Funcion para poner o no como placeholder el comentario que ha puesto el jugador
 function placeholder_comentarios ($com) {
 	if (strlen($com)<1) {
 		return "Puedes añadir un comentario si quieres... (150 caracteres max)";
@@ -159,6 +161,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<title>Gestor de asistencia</title>
 	<script>
+		// Script para contar los caracteres restantes en el cuadro de comentario
 			var text_max = 150;
 		$('#count_message').html(text_max + ' remaining');
 
@@ -183,6 +186,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
   </div>
 
 <?php
+	// Cabecera del grupo de usuarios. Muestra contenido según el grupo activo esa semana 
 	if (($_SESSION["usergrupo"])==($semana->grupo)) { ?>
 		<div class="card-block" style="background-color: #990000; border-color: #990000;">
 			<h3 class="card-title">We need you</h3>
