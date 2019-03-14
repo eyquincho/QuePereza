@@ -64,15 +64,15 @@ $semana = mysqli_fetch_object($result_semana);
 
 //Si el equipo nunca ha tenido una semana, hay que forzar la creación de la primera
 function comprobar_existencia() {
-if (mysqli_num_rows($result_semana)==0){
-    if ($_SESSION["rango"]=="1"){
-        echo "Parece que todavía no has creado tu primera semana. Accede al panel de creación de semanas haciendo clic aqui:";
-            ?><a class="btn btn-outline-info btn-lg btn-block" href="EditarSemana.php">Crear una nueva semana</a><?php
-        }
-        else{
-            echo "Parece que todavía no se ha creado la primera semana, accede de nuevo más tarde o contacta con tu entrenador";
-        }    
-    }else{}
+	if (mysqli_num_rows($result_semana)==0){
+		$save_day_0= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, ses_5, ses_6, oponente, ciudad, fecha_hora, comentarios, grupo) VALUES ('".$uteam."','1','1', '1', '1','1','1', 'test', 'test', '".$fechayhora."', 'Test','1')";
+		if (mysqli_query($_SESSION['con'], $save_day_0)or die(mysqli_error($_SESSION['con']))) {
+			 header('Location: '.$_SERVER['REQUEST_URI']);
+			}else {
+				echo "<div class=\"alert alert-warning\" role=\"alert\">Ha habido un error</div>";
+			}	
+		}else{
+			}
 }
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
 //Asi podemos deshabilitar o no los botones a la hora de seleccionar
