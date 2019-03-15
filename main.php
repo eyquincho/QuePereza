@@ -62,6 +62,15 @@ $sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_se
 $result_semana=mysqli_query($_SESSION['con'], $sql_semana);
 $semana = mysqli_fetch_object($result_semana);
 
+//Si el equipo nunca ha tenido una semana, hay que forzar la creación de la primera
+function comprobar_existencia() {
+	$save_day_0= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, ses_5, ses_6, oponente, ciudad, fecha_hora, comentarios, grupo) VALUES ('".$_SESSION["equipo"]."','1','1', '1', '1','1','1', 'test', 'test', '".$fechayhora."', 'Test','1')";
+	if (mysqli_query($_SESSION['con'], $save_day_0)or die(mysqli_error($_SESSION['con']))) {
+		header('Location: '.$_SERVER['REQUEST_URI']);
+		}else {
+			echo "<div class=\"alert alert-warning\" role=\"alert\">Ha habido un error</div>";
+		}	
+}
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
 //Asi podemos deshabilitar o no los botones a la hora de seleccionar
 
@@ -204,6 +213,13 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
     Asistencia semana de <strong><?php echo $_SESSION["nombre"]; ?></strong>
   </div>
   <form enctype="multipart/form-data" id="envio" name="envio_asistencia" class="col-lg-12" action="save.php" method="post">
+  <?php 
+	//Ponemos @ para evitar que devuelva el warning
+	if (mysqli_num_rows($result_semana)==0){
+		@comprobar_existencia();
+	}
+	else{}
+  ?> 
   <div class="card-block">
 	<h4 class="card-title" <?php echo $ses_1; ?>>Lunes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_1; ?>>
