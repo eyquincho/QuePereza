@@ -8,7 +8,7 @@ conexionDB();
 $tabla_jugador = "as_usuarios";
 $tabla_semana = "as_semana";
 $tabla_asistencia = "as_asistencia";
-
+$idteam = $_SESSION["teamid"];
 
 if (!isset($_SESSION["rango"])) {
 	// Definimos $dni y lo purgamos, por si hay cosas malas
@@ -58,13 +58,13 @@ function lista_grupo($gr) {
 }
 
 //Seleccionamos la última semana añadida, y la asignamos a la variable semana
-$sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_semana WHERE `equipo` = {$_SESSION["equipo"]})";
+$sql_semana="SELECT * FROM $tabla_semana WHERE id=(SELECT MAX(id) FROM $tabla_semana WHERE `equipo` = {$_SESSION["teamid"]})";
 $result_semana=mysqli_query($_SESSION['con'], $sql_semana);
 $semana = mysqli_fetch_object($result_semana);
 
 //Si el equipo nunca ha tenido una semana, hay que forzar la creación de la primera
 function comprobar_existencia() {
-	$save_day_0= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, ses_5, ses_6, oponente, ciudad, fecha_hora, comentarios, grupo) VALUES ('".$_SESSION["equipo"]."','1','1', '1', '1','1','1', 'test', 'test', '".$fechayhora."', 'Test','1')";
+	$save_day_0= "INSERT INTO as_semana (equipo, ses_1, ses_2, ses_3, ses_4, ses_5, ses_6, oponente, ciudad, fecha_hora, comentarios, grupo) VALUES ('".$_SESSION['teamid']."','1','1', '1', '1','1','1', 'test', 'test', '".$fechayhora."', 'Test','1')";
 	if (mysqli_query($_SESSION['con'], $save_day_0)or die(mysqli_error($_SESSION['con']))) {
 		header('Location: '.$_SERVER['REQUEST_URI']);
 		}else {
@@ -127,7 +127,7 @@ $_SESSION["ses_6"]=$ses_6;
 
 //Revisar todos los días la asistencia, si la hubiese, para marcar los días que ya ha seleccionado el usuario
 $us_id = $_SESSION["userid"];
-$sql_asistencia = mysqli_query($_SESSION['con'], "SELECT * FROM $tabla_asistencia WHERE semana=(SELECT MAX(id) FROM `as_semana` WHERE `equipo` = {$_SESSION["equipo"]}) AND usuario_id= '$us_id'");
+$sql_asistencia = mysqli_query($_SESSION['con'], "SELECT * FROM $tabla_asistencia WHERE semana=(SELECT MAX(id) FROM `as_semana` WHERE `equipo` = {$_SESSION["teamid"]}) AND usuario_id= '$us_id'");
 $asist_usuario = mysqli_fetch_object($sql_asistencia);
 $asist1 = $asist_usuario->asist_1;
 $asist2 = $asist_usuario->asist_2;
