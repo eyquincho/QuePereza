@@ -67,30 +67,51 @@ else {}
 		$sql_equipo = mysqli_query($_SESSION['con'], "SELECT * FROM $tabla_equipos WHERE id= $id_equipo");
 		while ($equipo_actual = mysqli_fetch_object($sql_equipo)) { 
 	?>
-	<form enctype="multipart/form-data" id="FormEditEquipo" name="editar_equipo" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-	  	
-				<img class="img-thumbnail" src="/img/logos/logo_team_<?php echo $id_equipo; ?>.jpg" alt="Card image cap" >
-				
-					<strong>Escudo</strong>
-					<label for="oponente">Modifica el nombre del equipo, puedes cambiarlo todas las veces que quieras</label>
-					<input type="text" class="form-control" name="oponente" value="<?php echo $semana_actual->oponente; ?>">
-
-				<strong>Nombre del equipo</strong>
-				<div class="form-group">
-					<label for="oponente">Modifica el nombre del equipo, puedes cambiarlo todas las veces que quieras</label>
-					<input type="text" class="form-control" name="oponente" value="<?php echo $semana_actual->oponente; ?>">
-				</div>
-
-			<div class="card">
-				<strong>URL personalizada</strong>
-				<div class="form-group">
-					<label for="url">Por ahora no puedes cambiar la url de tu equipo, generaría el caos. Si necesitas cambiarla ponte en contacto por correo electrónico.</label>
-					<input type="text" class="form-control" name="url" value="<?php echo $equipo_actual->nick; ?>">
-
-				<input type="hidden" name="IDequipo" value="<?php echo $equipo_actual->id; ?>">
-
-	  	<button type="submit" class="btn btn-default" name="EdicionEquipo">Actualizar</button>
-	</form>
+	<div class="container">
+	<form class="form" role="form">
+		<div class="row">
+      <!-- left column -->
+      
+		<div class="col-md-3 center-block">
+        	<img src="img/logos/logo_team_<?php echo $id_equipo; ?>.jpg" class="avatar img-circle mx-auto d-block" alt="avatar" width="75%">
+			  <!-- <input type="file" class="form-control"> -->
+				<label for="nuevoescudo" class="btn btn-outline-primary mx-auto d-block">Cambiar escudo</label>
+				<input id="nuevoescudo" style="visibility:hidden;" type="file">
+				<span id="imgSeleccionada"></span>
+        </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div>
+        
+        
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Nombre equipo:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Equipo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">URL:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="equipo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Guardar cambios">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
 
 <hr>
 <a class="btn btn-danger" href="php/cerrar.php">
@@ -99,10 +120,19 @@ else {}
 
 <?php } ?> 
 </div>
+</div>
 
 <script src="inc/tether.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+<script>
+	$("#nuevoescudo").change(function() {
+  		filename = this.files[0].name
+  		console.log(filename);
+		document.getElementById("imgSeleccionada").innerHTML = "Seleccionado: "+filename;
+	});
+</script>
+
 </body>
 </html>
