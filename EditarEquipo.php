@@ -15,24 +15,11 @@ $id_equipo = $_SESSION['teamid'];
 function EditarEquipo () {
 //Actualizar datos una vez pulsado el actualizar
 if (isset ($_POST["EdicionSemana"])) {
-	$Edit_IDSemana = $_POST["IDSemana"];
-	$Edit_ses_1 = $_POST["dia1"];
-	$Edit_ses_2 = $_POST["dia2"];
-	$Edit_ses_3 = $_POST["dia3"];
-	$Edit_ses_4 = $_POST["dia4"];
-	$Edit_ses_5 = $_POST["dia5"];
-	$Edit_ses_6 = $_POST["dia6"];
-	$Edit_oponente = $_POST["oponente"];
-	$Edit_ciudad = $_POST["ciudad"];
-	$Edit_fechayhora = $_POST["fechayhora"];
-	$Edit_oponente_b = $_POST["oponente_b"];
-	$Edit_ciudad_b = $_POST["ciudad_b"];
-	$Edit_fechayhora_b = $_POST["fechayhora_b"];
-	$Edit_comentarios = $_POST["comentarios"];
-	$Edit_grupo = $_POST["grupo"];
-	$guardar_actualizacion= "UPDATE as_semana SET `ses_1`='$Edit_ses_1',`ses_2`='$Edit_ses_2',`ses_3`='$Edit_ses_3',`ses_4`='$Edit_ses_4',`ses_5`='$Edit_ses_5',`ses_6`='$Edit_ses_6',`oponente`='$Edit_oponente',`ciudad`='$Edit_ciudad',`fecha_hora`='$Edit_fechayhora',`oponente_b`='$Edit_oponente_b',`ciudad_b`='$Edit_ciudad_B',`fecha_hora_B`='$Edit_fechayhora_b',`comentarios`='$Edit_comentarios',`grupo`='$Edit_grupo' WHERE `id`= '$Edit_IDSemana'";
+	$Edit_nombre = $_POST["IDSemana"];
+	$Edit_nick = $_POST["dia1"];
+	$guardar_actualizacion= "UPDATE as_semana SET `nombre`='$Edit_nombre',`nick`='$Edit_nick' WHERE `id`= '$id_equipo'";
 					if (mysqli_query($_SESSION['con'], $guardar_actualizacion)or die(mysqli_error($_SESSION['con']))) {
-									echo "<div class=\"alert alert-success\" role=\"alert\">Has editado la semana correctamente</div>";
+									echo "<div class=\"alert alert-success\" role=\"alert\">Has editado el equipo correctamente</div>";
 								}else {
 									echo "<div class=\"alert alert-danger\" role=\"alert\">Ha ocurrido un error y no se han podido guardar los cambios.</div>";
 								}	
@@ -73,7 +60,7 @@ else {}
       <!-- left column -->
       
 		<div class="col-md-3 center-block">
-        	<img src="img/logos/logo_team_<?php echo $id_equipo; ?>.jpg" class="avatar img-circle mx-auto d-block" alt="avatar" width="75%">
+        	<img src="img/logos/logo_team_<?php echo $equipo_actual->ID; ?>.jpg" class="avatar img-circle mx-auto d-block" alt="avatar" width="75%">
 			  <!-- <input type="file" class="form-control"> -->
 				<label for="nuevoescudo" class="btn btn-outline-primary mx-auto d-block">Cambiar escudo</label>
 				<input id="nuevoescudo" style="visibility:hidden;" type="file">
@@ -92,18 +79,19 @@ else {}
           <div class="form-group">
             <label class="col-lg-3 control-label">Nombre equipo:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="Equipo">
+              <input class="form-control" type="text" value="<?php echo $equipo_actual->nombre; ?>">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">URL:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="equipo">
+              <input class="form-control" type="text" value="<?php echo $equipo_actual->nick; ?>">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
+		<hr>
               <input type="button" class="btn btn-primary" value="Guardar cambios">
             </div>
           </div>
