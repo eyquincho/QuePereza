@@ -91,6 +91,7 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 	<?php RevSolicitudes(); ?>
 	<a href="EditarSemana.php" class="btn btn-success btn-block" role="button" aria-pressed="true">Editar semana</a>
 	<a href="EditarJugadores.php" class="btn btn-warning btn-block" role="button" aria-pressed="true">Editar jugadores</a>
+	<a href="EditarEquipo.php" class="btn btn-danger btn-block" role="button" aria-pressed="true">Editar equipo</a>
 	<button type="button" class="btn btn-info-outline btn-block" data-toggle="collapse" data-target="#solicitudes" aria-expanded="false" aria-controls="collapse_solicitudes">
 	  Solicitudes de acceso pendientes: <strong><?php echo $num_solicitudes; ?></strong>
 	</button>
