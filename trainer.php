@@ -57,9 +57,9 @@ $num_solicitudes = mysqli_num_rows($lista_solicitudes);
 //Comprobamos que dias de la semana hay evento, y lo asignamos a sus variables
 //Asi podemos deshabilitar o no los botones a la hora de seleccionar
  
-	if ($_SESSION["rango"]!="1") { 
-	echo "No puedes acceder a este contenido"; } 
-	else {
+if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
+	header("Location: main.php?er_per=1");
+} else {
 ?>
 <!DOCTYPE html>
 <html lang="es">
