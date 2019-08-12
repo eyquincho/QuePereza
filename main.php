@@ -188,6 +188,11 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 <!-- Formulario jugador -->
 <div class="row">
 <a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Asistencia</h2>
+<?php
+		if (isset($_GET['er_per'])) {
+		echo "<div class=\"alert alert-danger\" role=\"alert\">No dispones de suficientes permisos para acceder a esa página.</div>";
+		} else {}
+	?>
 <div class="card card-inverse">
   <div class="card-block" style="background-color: #333; border-color: #333;">
 		<h3 class="card-title">Avisos</h3>
@@ -220,6 +225,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	}
 	else{}
   ?> 
+  
   <div class="card-block">
 	<h4 class="card-title" <?php echo $ses_1; ?>>Lunes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_1; ?>>
