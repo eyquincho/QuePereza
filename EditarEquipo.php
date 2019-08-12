@@ -7,7 +7,7 @@ include("php/conDB.php");
 conexionDB();
 
 if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
-	header("Location: main.php");
+	header("Location: main.php?er_per=1");
 } else {}
 
 $tabla_equipos = "as_equipos";
