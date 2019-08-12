@@ -6,9 +6,9 @@ include("php/class.upload.php");
 include("php/conDB.php");
 conexionDB();
 
-//if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
-//	header("Location: login.php");
-//} else {}
+if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
+	header("Location: main.php");
+} else {}
 
 $tabla_equipos = "as_equipos";
 $id_equipo = $_SESSION['teamid'];
