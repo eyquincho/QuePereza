@@ -2,9 +2,9 @@
 // definimos unas constanstes 
 // para la conexion a la DB
 define('_SERV','localhost'); // Servidor
-define('_USER',''); 	 // usuario de la DB
+define('_USER','root'); 	 // usuario de la DB
 define('_PASS',''); 		 // password de la DB
-define('_DATAB',''); 	 // nombre de la tabla
+define('_DATAB','quepereza'); 	 // nombre de la tabla
 
 // funcion para conexion a MYSQL
 function conexionDB()
