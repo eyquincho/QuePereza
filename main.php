@@ -166,7 +166,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<?php include ("favicon.html"); ?>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<title>Gestor de asistencia</title>
 	<script>
@@ -187,37 +187,40 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 
 <!-- Formulario jugador -->
 <div class="row">
-<a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Asistencia</h2>
-<?php
+	<a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Asistencia</h2>
+	<?php
 		if (isset($_GET['er_per'])) {
 		echo "<div class=\"alert alert-danger\" role=\"alert\">No dispones de suficientes permisos para acceder a esa página.</div>";
 		} else {}
-	?>
-<div class="card card-inverse">
-  <div class="card-block" style="background-color: #333; border-color: #333;">
-		<h3 class="card-title">Avisos</h3>
-		<p class="card-text"><?php echo $semana->comentarios; ?></p>
-  </div>
-
-<?php
-	// Cabecera del grupo de usuarios. Muestra contenido según el grupo activo esa semana 
-	if (($_SESSION["usergrupo"])==($semana->grupo)) { ?>
-		<div class="card-block" style="background-color: #990000; border-color: #990000;">
-			<h3 class="card-title">We need you</h3>
-			<p class="card-text">Esta semana el grupo de trabajo al que perteneces (Grupo <?php echo $semana->grupo; ?>) se encarga de que el equipo funcione. Puedes leer los quehaceres de los grupos <a data-toggle="modal" data-target="#modal-grupos" ><span style="text-decoration: underline;">aqui</span></a>.</p>
+	?>	
+	<div class="card w-100">
+		<div class="card-header" >
+			<h3 class="card-title">Avisos</h3>
+			<p class="card-text"><?php echo $semana->comentarios; ?></p>
 		</div>
-		<?php } else { ?>
-		<div class="card-block" style="background-color: #106883; border-color: #106883;">
-			<p class="card-text">Grupo de trabajo de esta semana: <strong><?php echo $semana->grupo; ?></strong>. Puedes leer los quehaceres de los grupos <a data-toggle="modal" data-target="#modal-grupos" ><span style="text-decoration: underline;">aqui</span></a>.</p>
-		</div>
-		<?php }; ?>
 
+		<?php
+		// Cabecera del grupo de usuarios. Muestra contenido según el grupo activo esa semana 
+		if (($_SESSION["usergrupo"])==($semana->grupo)) { ?>
+			<div class="card-header" style="background-color: #990000; color: white ">
+				<h3 class="card-title">We need you</h3>
+				<p class="card-text">Esta semana el grupo de trabajo al que perteneces (Grupo <?php echo $semana->grupo; ?>) se encarga de que el equipo funcione. Puedes leer los quehaceres de los grupos <a data-toggle="modal" data-target="#modal-grupos" ><span style="text-decoration: underline;">aqui</span></a>.</p>
+			</div>
+			<?php } else { ?>
+			<div class="card-body" style="background-color: #106883; border-color: #106883;">
+				<p class="card-text">Grupo de trabajo de esta semana: <strong><?php echo $semana->grupo; ?></strong>. Puedes leer los quehaceres de los grupos <a data-toggle="modal" data-target="#modal-grupos" ><span style="text-decoration: underline;">aqui</span></a>.</p>
+			</div>
+			<?php }; ?>
+
+	</div>
 </div>
-<div class="card">
+<div class="row">
+<div class="card w-100">
   <div class="card-header">
-    Asistencia semana de <strong><?php echo $_SESSION["nombre"]; ?></strong>
+  	<p class="card-text">Asistencia semana de <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
   </div>
-  <form enctype="multipart/form-data" id="envio" name="envio_asistencia" class="col-lg-12" action="save.php" method="post">
+  <div class="card-body">
+  <form enctype="multipart/form-data" id="envio" name="envio_asistencia" action="save.php" method="post">
   <?php 
 	//Ponemos @ para evitar que devuelva el warning
 	if (mysqli_num_rows($result_semana)==0){
@@ -226,7 +229,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	else{}
   ?> 
   
-  <div class="card-block">
+  
 	<h4 class="card-title" <?php echo $ses_1; ?>>Lunes</h4>
 		<div class="btn-group-lg" data-toggle="buttons" <?php echo $ses_1; ?>>
 			  <button class="btn btn-outline-success <?php disponibilidad_actual("active", 1, 2) ?>">
@@ -331,10 +334,10 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
+			<h4 class="modal-title" id="CabeceraListado">Listado asistencia</h4>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">×</span>
 			</button>
-			<h4 class="modal-title" id="CabeceraListado">Listado asistencia</h4>
 		  </div>
 		  <div class="modal-body">
 			<div <?php echo $ses_1; ?>><strong>L: </strong> <?php echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 2 AND `semana` = ".$semana->id." AND `usuario_equipo` = ".$_SESSION["equipo"].""));?> ( <?php echo mysqli_num_rows(mysqli_query($_SESSION['con'], "SELECT `id` FROM ".$tabla_asistencia." WHERE `asist_1` = 1 AND `semana` = ".$semana->id));?>)<br></div>
@@ -377,7 +380,7 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 						<button type="button" class="btn <?php checkasist($seleccionada->asist_6); ?>" <?php echo $ses_6; ?>>P</button>
 					</div></p>
 					<div class="collapse" id="collapse_<?php echo $seleccionada->id; ?>">
-					  <div class="card card-block">
+					  <div class="card card-body">
 						<?php echo $seleccionada->comentarios; ?>
 					  </div>
 					</div>
@@ -403,10 +406,10 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">
+			<h4 class="modal-title" id="CabeceraListado">¿Qué es un grupo de trabajo?</h4>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">×</span>
 			</button>
-			<h4 class="modal-title" id="CabeceraListado">¿Qué es un grupo de trabajo?</h4>
 		  </div>
 		  <div class="modal-body">
 			Los grupos de trabajo son un sistema de organización enfocado en tener siempre jugadores disponibles para llevar a cabo las tareas diarias del club. <br />
@@ -449,11 +452,11 @@ $sDate_b = $oDate_b->format("d-m-Y H:i");
 
 
 </div>
-<a class="btn btn-danger" href="php/cerrar.php">
-<i class="fa fa-sign-out fa-lg"></i> Cerrar sesión</a>
+<hr>
+<?php include("footer.php"); ?>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

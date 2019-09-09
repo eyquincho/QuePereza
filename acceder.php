@@ -38,7 +38,7 @@ function RegistrarSolicitud () {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<?php include ("favicon.html"); ?>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<title>Gestor de asistencia - Entrenador</title>
 
@@ -49,6 +49,8 @@ function RegistrarSolicitud () {
 <div class="container">
 <div class="row">
 <a href="login.php?team=<?php echo $_SESSION['teamnick']; ?>"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Solicitar acceso a <?php echo $_SESSION['teamname']; ?></h2>
+</div>
+<div class="row  justify-content-center">
 	<form enctype="multipart/form-data" id="FormSolicitarAccesi" name="SolicitarAcceso" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 		<div class="form-group">
 			<label for="Nombre">Nombre</label>
@@ -59,13 +61,12 @@ function RegistrarSolicitud () {
 			<input type="tel" maxlength = "8" class="form-control" name="DNI">
 		</div>
 		<input type="hidden" name="equipo" value="<?php echo $_SESSION['teamid']; ?>">
-	  <button type="submit" class="btn btn-default" name="EnviarSolicitud">Enviar solicitud</button>
+	  <button type="submit" class="btn btn-danger btn-lg btn-block" name="EnviarSolicitud">Enviar solicitud</button>
 	</form>
 </div>
 </div>
-<script src="inc/tether.min.js" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
