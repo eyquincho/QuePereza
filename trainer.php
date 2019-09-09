@@ -87,20 +87,20 @@ if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
 <a href="main.php"><h2><img src="img/logos/logo_team_<?php echo $_SESSION['teamid']; ?>.jpg" width="75px" /></a> Entrenador</h2>
 	<!-- Botones -->
 	<?php RevSolicitudes(); ?>
-	<a href="EditarSemana.php" class="btn btn-success btn-block" role="button" aria-pressed="true">Editar semana</a>
-	<a href="EditarJugadores.php" class="btn btn-warning btn-block" role="button" aria-pressed="true">Editar jugadores</a>
-	<a href="EditarEquipo.php" class="btn btn-danger btn-block" role="button" aria-pressed="true">Editar equipo</a>
+	<a href="EditarSemana.php" class="btn btn-success btn-block" role="button" aria-pressed="true"><i class="fa fa-calendar fa-lg" aria-hidden="true"></i> Editar semana</a>
+	<a href="EditarJugadores.php" class="btn btn-warning btn-block" role="button" aria-pressed="true"><i class="fa fa-user" aria-hidden="true"></i> Editar jugadores</a>
+	<a href="EditarEquipo.php" class="btn btn-danger btn-block" role="button" aria-pressed="true"><i class="fa fa-users" aria-hidden="true"></i></i> Editar equipo</a>
 	<button type="button" class="btn btn-info-outline btn-block" data-toggle="collapse" data-target="#solicitudes" aria-expanded="false" aria-controls="collapse_solicitudes">
 	  Solicitudes de acceso pendientes: <strong><?php echo $num_solicitudes; ?></strong>
 	</button>
 	<div class="collapse" id="solicitudes">
-		<div class="card card-inverse" style="background-color: #333; border-color: #333;">
-			<div class="card-block">
+		<div class="card card-inverse" style="background-color: #333; color: #fff; border-color: #333;">
+			<div class="card-body">
 				<p class="card-text">Debajo se listan, si las hubiese, las solicitudes de acceso a la plataforma hechas por jugadores. Puedes revisar su información tocando sobre su nombre. En el verde aceptas, en el rojo rechazas. 
 				No va a salir ningún cartelito preguntando si estás seguro. I WAS BORN READY!</p>
 			</div>
 		</div>
-		<div class="card card-block">
+		<div class="card card-body">
 			<?php
 						while ($solicitud = mysqli_fetch_object($lista_solicitudes)) {
 									
@@ -137,11 +137,7 @@ if (!isset($_SESSION["dni"]) || $_SESSION["rango"]==0) {
 	</div>
 
 </div>
-<hr>
-<a class="btn btn-danger" href="php/cerrar.php">
-<i class="fa fa-sign-out fa-lg"></i> Cerrar sesión</a>
-
-
+<?php include("footer.php"); ?>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
